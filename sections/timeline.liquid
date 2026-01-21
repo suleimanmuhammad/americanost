@@ -1,0 +1,71 @@
+
+<div id="timeline" classs="page-width">
+
+  <h2>american ostrich farm Timeline</h2>
+
+  <div class="timeline_grids">
+
+    <div class="time_slides">
+    {% for block in section.blocks %}
+  {% case block.type %}
+    {% when 'slide' %}
+      <div class="slide" {{ block.shopify_attributes }}>
+      {% if block.settings.image %}  <img src="{{ block.settings.image | img_url: 'master' }}"> {% endif %}
+    <div class="title_timeline">
+
+     <h3> {{ block.settings.title }}</h3>
+      <p>{{ block.settings.desc }}</p>
+    </div>
+      </div>
+  {% endcase %}
+{% endfor %}
+</div>
+  </div>
+</div>
+{% schema %}
+  {
+    "name": "Timeline Plugin",
+    "settings": [
+      
+    ]
+  ,
+  "blocks": [
+     {
+       "name": "Slide",
+       "type": "slide",
+       "settings": [
+         {
+           "type": "image_picker",
+           "id": "image",
+           "label": "Image"
+         },
+          {
+           "type": "text",
+           "id": "title",
+           "label": "Title"
+         },
+         {
+           "type": "textarea",
+           "id": "desc",
+           "label": "Description"
+         }
+       ]
+     }
+   ],
+  "presets": [
+    {
+      "name": "Timeline"
+    }
+  ],
+  "disabled_on": {
+    "groups": ["footer", "header", "custom.popups"]
+  }
+}
+
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

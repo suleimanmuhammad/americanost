@@ -1,0 +1,355 @@
+<div class="page-width">
+<div class="tab">
+  <button class="tablinks" onclick="openCity(event, 'basics')" id="defaultOpen">Ostrich Meat: The Basics</button>
+  <button class="tablinks" onclick="openCity(event, 'health')">Health & Nutrition</button>
+  <button class="tablinks" onclick="openCity(event, 'shipping')">Shipping & Handling</button>
+  <button class="tablinks" onclick="openCity(event, 'refunds')">Refunds & Returns</button>
+  <button class="tablinks" onclick="openCity(event, 'raising')">Raising Ostriches</button>
+  <button class="tablinks" onclick="openCity(event, 'sustain')">Sustainability</button>
+  <button class="tablinks" onclick="openCity(event, 'skincare')">Skin care</button>
+  <button class="tablinks" onclick="openCity(event, 'pet')">Pet Treats</button>
+  <button class="tablinks" onclick="openCity(event, 'shipping')">Shipping & Handling</button>
+</div>
+
+<div id="basics" class="tabcontent">
+ {%- for block in section.blocks -%}
+{% case block.type %}
+    {% when 'the_basics' %}
+          <div class="page-width">
+              <button type="button" class="collapsible-trigger collapsible-trigger--inline collapsible--auto-height text-left" aria-controls="FAQ-content-{{ block.id }}">
+                {%- render 'collapsible-icons-alt', no_circle: true -%}
+                <span>{{ block.settings.question }}</span>
+              </button>
+              <div id="FAQ-content-{{ block.id }}" class="collapsible-content collapsible-content--all">
+                <div class="collapsible-content__inner collapsible-content__inner--faq rte">
+                  {{ block.settings.answer }}
+                </div>
+              </div>
+            </div>
+  {% endcase %}
+  {% endfor %}
+</div>
+
+<div id="health" class="tabcontent">
+   {%- for block in section.blocks -%}
+ {% case block.type %}
+    {% when 'health' %}
+          <div class="page-width">
+              <button type="button" class="collapsible-trigger collapsible-trigger--inline collapsible--auto-height text-left" aria-controls="FAQ-content-{{ block.id }}">
+                {%- render 'collapsible-icons-alt', no_circle: true -%}
+                <span>{{ block.settings.question }}</span>
+              </button>
+              <div id="FAQ-content-{{ block.id }}" class="collapsible-content collapsible-content--all">
+                <div class="collapsible-content__inner collapsible-content__inner--faq rte">
+                  {{ block.settings.answer }}
+                </div>
+              </div>
+            </div>
+  {% endcase %}
+     {% endfor %}
+</div>
+
+<div id="shipping" class="tabcontent">
+  {%- for block in section.blocks -%}
+ {% case block.type %}
+    {% when 'shipping' %}
+          <div class="page-width">
+              <button type="button" class="collapsible-trigger collapsible-trigger--inline collapsible--auto-height text-left" aria-controls="FAQ-content-{{ block.id }}">
+                {%- render 'collapsible-icons-alt', no_circle: true -%}
+                <span>{{ block.settings.question }}</span>
+              </button>
+              <div id="FAQ-content-{{ block.id }}" class="collapsible-content collapsible-content--all">
+                <div class="collapsible-content__inner collapsible-content__inner--faq rte">
+                  {{ block.settings.answer }}
+                </div>
+              </div>
+            </div>
+  {% endcase %}
+    {% endfor %}
+</div>
+
+
+<div id="refunds" class="tabcontent">
+ {%- for block in section.blocks -%}
+ {% case block.type %}
+    {% when 'refunds' %}
+          <div class="page-width">
+              <button type="button" class="collapsible-trigger collapsible-trigger--inline collapsible--auto-height text-left" aria-controls="FAQ-content-{{ block.id }}">
+                {%- render 'collapsible-icons-alt', no_circle: true -%}
+                <span>{{ block.settings.question }}</span>
+              </button>
+              <div id="FAQ-content-{{ block.id }}" class="collapsible-content collapsible-content--all">
+                <div class="collapsible-content__inner collapsible-content__inner--faq rte">
+                  {{ block.settings.answer }}
+                </div>
+              </div>
+            </div>
+  {% endcase %}
+    {% endfor %}
+</div>
+
+<div id="raising" class="tabcontent">
+  {%- for block in section.blocks -%}
+ {% case block.type %}
+    {% when 'raising' %}
+          <div class="page-width">
+              <button type="button" class="collapsible-trigger collapsible-trigger--inline collapsible--auto-height text-left" aria-controls="FAQ-content-{{ block.id }}">
+                {%- render 'collapsible-icons-alt', no_circle: true -%}
+                <span>{{ block.settings.question }}</span>
+              </button>
+              <div id="FAQ-content-{{ block.id }}" class="collapsible-content collapsible-content--all">
+                <div class="collapsible-content__inner collapsible-content__inner--faq rte">
+                  {{ block.settings.answer }}
+                </div>
+              </div>
+            </div>
+  {% endcase %}
+    {% endfor %}
+</div>
+
+<div id="sustain" class="tabcontent">
+   {%- for block in section.blocks -%}
+ {% case block.type %}
+    {% when 'sustain' %}
+          <div class="page-width">
+              <button type="button" class="collapsible-trigger collapsible-trigger--inline collapsible--auto-height text-left" aria-controls="FAQ-content-{{ block.id }}">
+                {%- render 'collapsible-icons-alt', no_circle: true -%}
+                <span>{{ block.settings.question }}</span>
+              </button>
+              <div id="FAQ-content-{{ block.id }}" class="collapsible-content collapsible-content--all">
+                <div class="collapsible-content__inner collapsible-content__inner--faq rte">
+                  {{ block.settings.answer }}
+                </div>
+              </div>
+            </div>
+  {% endcase %}
+    {% endfor %}
+</div>
+
+<div id="skincare" class="tabcontent">
+   {%- for block in section.blocks -%}
+ {% case block.type %}
+    {% when 'skincare' %}
+          <div class="page-width">
+              <button type="button" class="collapsible-trigger collapsible-trigger--inline collapsible--auto-height text-left" aria-controls="FAQ-content-{{ block.id }}">
+                {%- render 'collapsible-icons-alt', no_circle: true -%}
+                <span>{{ block.settings.question }}</span>
+              </button>
+              <div id="FAQ-content-{{ block.id }}" class="collapsible-content collapsible-content--all">
+                <div class="collapsible-content__inner collapsible-content__inner--faq rte">
+                  {{ block.settings.answer }}
+                </div>
+              </div>
+            </div>
+  {% endcase %}
+    {% endfor %}
+</div>
+
+<div id="pet" class="tabcontent">
+{%- for block in section.blocks -%}
+ {% case block.type %}
+    {% when 'pet' %}
+          <div class="page-width">
+              <button type="button" class="collapsible-trigger collapsible-trigger--inline collapsible--auto-height text-left" aria-controls="FAQ-content-{{ block.id }}">
+                {%- render 'collapsible-icons-alt', no_circle: true -%}
+                <span>{{ block.settings.question }}</span>
+              </button>
+              <div id="FAQ-content-{{ block.id }}" class="collapsible-content collapsible-content--all">
+                <div class="collapsible-content__inner collapsible-content__inner--faq rte">
+                  {{ block.settings.answer }}
+                </div>
+              </div>
+            </div>
+  {% endcase %}
+    {% endfor %}
+</div>
+
+<div id="shipping" class="tabcontent">
+ {%- for block in section.blocks -%}
+ {% case block.type %}
+    {% when 'shipping' %}
+          <div class="page-width">
+              <button type="button" class="collapsible-trigger collapsible-trigger--inline collapsible--auto-height text-left" aria-controls="FAQ-content-{{ block.id }}">
+                {%- render 'collapsible-icons-alt', no_circle: true -%}
+                <span>{{ block.settings.question }}</span>
+              </button>
+              <div id="FAQ-content-{{ block.id }}" class="collapsible-content collapsible-content--all">
+                <div class="collapsible-content__inner collapsible-content__inner--faq rte">
+                  {{ block.settings.answer }}
+                </div>
+              </div>
+            </div>
+  {% endcase %}
+    {% endfor %}
+</div>
+</div>
+
+<div style="clear:both"></div>
+<script>
+function openCity(evt, cityName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
+</script>
+
+{% schema %}
+  {
+    "name": "FAQ Tabs",
+    "settings": [
+
+      
+    ],"blocks": [
+    {
+      "type": "the_basics",
+      "name": "The Basics",
+      "settings": [
+         {
+          "type": "text",
+          "id": "question",
+          "label": "Question"
+        },{
+          "type": "textarea",
+          "id": "answer",
+          "label": "Answer"
+        }
+      ]
+    },
+       {
+      "type": "health",
+      "name": "Health",
+      "settings": [
+         {
+          "type": "text",
+          "id": "question",
+          "label": "Question"
+        },{
+          "type": "textarea",
+          "id": "answer",
+          "label": "Answer"
+        }
+      ]
+    },
+       {
+      "type": "refunds",
+      "name": "refunds",
+      "settings": [
+         {
+          "type": "text",
+          "id": "question",
+          "label": "Question"
+        },{
+          "type": "textarea",
+          "id": "answer",
+          "label": "Answer"
+        }
+      ]
+    },
+      {
+      "type": "raising",
+      "name": "raising",
+      "settings": [
+         {
+          "type": "text",
+          "id": "question",
+          "label": "Question"
+        },{
+          "type": "textarea",
+          "id": "answer",
+          "label": "Answer"
+        }
+      ]
+    },
+      {
+      "type": "sustain",
+      "name": "sustain",
+      "settings": [
+         {
+          "type": "text",
+          "id": "question",
+          "label": "Question"
+        },{
+          "type": "textarea",
+          "id": "answer",
+          "label": "Answer"
+        }
+      ]
+    },
+
+      {
+      "type": "skincare",
+      "name": "skincare",
+      "settings": [
+         {
+          "type": "text",
+          "id": "question",
+          "label": "Question"
+        },{
+          "type": "textarea",
+          "id": "answer",
+          "label": "Answer"
+        }
+      ]
+    },
+
+
+        {
+      "type": "pet",
+      "name": "pet",
+      "settings": [
+         {
+          "type": "text",
+          "id": "question",
+          "label": "Question"
+        },{
+          "type": "textarea",
+          "id": "answer",
+          "label": "Answer"
+        }
+      ]
+    },
+
+
+       {
+      "type": "shipping",
+      "name": "shipping",
+      "settings": [
+         {
+          "type": "text",
+          "id": "question",
+          "label": "Question"
+        },{
+          "type": "textarea",
+          "id": "answer",
+          "label": "Answer"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ Tabs"
+    }
+  ],
+  "disabled_on": {
+    "groups": ["footer", "header", "custom.popups"]
+  }
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

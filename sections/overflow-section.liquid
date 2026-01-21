@@ -1,0 +1,65 @@
+<section class="overflow-section">
+{% if section.settings.image %}
+<img src="{{ section.settings.image | img_url : 'master' }}">
+{% endif %}
+  <div class="text_block">
+{% if section.settings.title %}
+  <h3>{{ section.settings.title }}</h3>
+  {% endif %}
+  
+    <p>
+    {{ section.settings.desc }}  
+    </p>
+    {% if section.settings.url %}
+<a href="{{ section.settings.url }}"><button class="btn btn_red">{{ section.settings.btn_name }}</button></a>
+  {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Overflow Sections",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "t:sections.text-and-image.settings.image.label"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "text",
+      "id": "desc",
+      "label": "Description"
+    },
+    {
+      "type": "text",
+      "id": "btn_name",
+      "label": "Button Title",
+      "default":"shop Now"
+    }, {
+      "type": "url",
+      "id": "url",
+      "label": "Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Overflow Section"
+    }
+  ],
+  "disabled_on": {
+    "groups": ["footer", "header", "custom.popups"]
+  }
+}
+{% endschema %}
+
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

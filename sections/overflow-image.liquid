@@ -1,0 +1,82 @@
+<section class="overflow-image">
+
+  <div class="page-width">
+    {%- for block in section.blocks -%}
+<div class="overflow_block">
+    {% if block.settings.url %}
+<a href="{{ block.settings.url }}">
+  {% endif %}
+
+{% if block.settings.image %}
+<img src="{{ block.settings.image | img_url : 'master' }}">
+{% endif %}
+
+
+
+  <div class="text_block_image">
+{% if block.settings.title %}
+  <h3>{{ block.settings.title }}</h3>
+  {% endif %}
+
+  </div>
+    {% if block.settings.url %}
+
+</a>
+  {% endif %}
+</div>
+{% endfor %}
+  </div>
+      </section>
+
+{% schema %}
+{
+  "name": "Overflow Image",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "t:sections.text-and-image.settings.image.label"
+    }
+  ],
+  
+  "max_blocks": 5,
+  "blocks": [
+     {
+       "name": "Image Block",
+       "type": "slide",
+       "settings": [
+         {
+           "type": "image_picker",
+           "id": "image",
+           "label": "Image"
+         },
+         {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "url",
+      "id": "url",
+      "label": "Link"
+    }
+       ]
+     }
+  ],
+  "presets": [
+    {
+      "name": "Overflow Image"
+    }
+  ],
+  "disabled_on": {
+    "groups": ["footer", "header", "custom.popups"]
+  }
+}
+{% endschema %}
+
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
