@@ -1,0 +1,130 @@
+{%- form 'product', product, id: form_id, class: 'product-single__form' -%}
+
+  {%- liquid
+    assign gift_card_recipient_feature_active = false
+    if block.settings.show_gift_card_recipient and product.gift_card?
+      assign gift_card_recipient_feature_active = true
+    endif
+
+    assign enable_dynamic_buttons = false
+    if show_dynamic_checkout and template != 'product.preorder' and gift_card_recipient_feature_active == false
+      assign enable_dynamic_buttons = true
+    endif
+  -%}
+
+  {%- if gift_card_recipient_feature_active -%}
+    {%- render 'gift-card-recipient-form', product: product, form: form, section: section -%}
+  {%- endif -%}
+
+  
+    <div class="payment-buttons">
+
+<div class="js-qty__wrapper">
+  <input type="text" id="Quantity-{{ id }}"
+    class="js-qty__num"
+    value="1"
+    min="1"
+    aria-label="quantity"
+    pattern="[0-9]*"
+    form="{{ form_id }}"
+    name="quantity">
+  <button type="button"
+    class="js-qty__adjust js-qty__adjust--minus"
+    aria-label="{{ 'cart.general.reduce_quantity' | t }}">
+      <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-minus" viewBox="0 0 20 20"><path fill="#444" d="M17.543 11.029H2.1A1.032 1.032 0 0 1 1.071 10c0-.566.463-1.029 1.029-1.029h15.443c.566 0 1.029.463 1.029 1.029 0 .566-.463 1.029-1.029 1.029z"/></svg>
+      <span class="icon__fallback-text" aria-hidden="true">&minus;</span>
+  </button>
+  <button type="button"
+    class="js-qty__adjust js-qty__adjust--plus"
+    aria-label="{{ 'cart.general.increase_quantity' | t }}">
+      <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-plus" viewBox="0 0 20 20"><path fill="#444" d="M17.409 8.929h-6.695V2.258c0-.566-.506-1.029-1.071-1.029s-1.071.463-1.071 1.029v6.671H1.967C1.401 8.929.938 9.435.938 10s.463 1.071 1.029 1.071h6.605V17.7c0 .566.506 1.029 1.071 1.029s1.071-.463 1.071-1.029v-6.629h6.695c.566 0 1.029-.506 1.029-1.071s-.463-1.071-1.029-1.071z"/></svg>
+      <span class="icon__fallback-text" aria-hidden="true">+</span>
+  </button>
+</div>
+    {%- liquid
+      assign default_text = 'products.product.add_to_cart' | t
+      assign button_text = 'products.product.add_to_cart' | t
+      if template contains 'preorder'
+        assign default_text = 'products.product.preorder' | t
+        assign button_text = 'products.product.preorder' | t
+      endif
+      unless current_variant.available
+        assign button_text = 'products.product.sold_out' | t
+      endunless
+    -%}
+
+    <button
+      {% if product.empty? %}type="button"{% else %}type="submit"{% endif %}
+      name="add"
+      data-add-to-cart
+      class="btn btn--full add-to-cart{% if enable_dynamic_buttons and product.selling_plan_groups == empty %} btn--secondary{% endif %}"
+      {% unless current_variant.available %} disabled="disabled"{% endunless %}>
+      <span data-add-to-cart-text data-default-text="{{ default_text }}">
+     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M16.0004 9V6C16.0004 3.79086 14.2095 2 12.0004 2C9.79123 2 8.00037 3.79086 8.00037 6V9M3.59237 10.352L2.99237 16.752C2.82178 18.5717 2.73648 19.4815 3.03842 20.1843C3.30367 20.8016 3.76849 21.3121 4.35839 21.6338C5.0299 22 5.94374 22 7.77142 22H16.2293C18.057 22 18.9708 22 19.6423 21.6338C20.2322 21.3121 20.6971 20.8016 20.9623 20.1843C21.2643 19.4815 21.179 18.5717 21.0084 16.752L20.4084 10.352C20.2643 8.81535 20.1923 8.04704 19.8467 7.46616C19.5424 6.95458 19.0927 6.54511 18.555 6.28984C17.9444 6 17.1727 6 15.6293 6H8.37142C6.82806 6 6.05638 6 5.44579 6.28984C4.90803 6.54511 4.45838 6.95458 4.15403 7.46616C3.80846 8.04704 3.73643 8.81534 3.59237 10.352Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>  <span class="btn_text"> {{ button_text }}</span>
+      </span>
+    </button>
+
+   </div>
+
+  <div class="shopify-payment-terms product__policies">{{ form | payment_terms }}</div>
+
+  <select name="id" data-product-select class="product-single__variants no-js">
+    {%- for variant in product.variants -%}
+      {%- if variant.available -%}
+        <option {% if variant == product.selected_or_first_available_variant %}
+          selected="selected"{% endif %}
+          value="{{ variant.id }}">
+          {{ variant.title }} - {{ variant.price | money_with_currency }}
+        </option>
+      {%- else -%}
+        <option disabled="disabled">
+          {{ variant.title }} - {{ 'products.product.sold_out' | t }}
+        </option>
+      {%- endif -%}
+    {%- endfor -%}
+  </select>
+{%- endform -%}
+</div>
+  {% if product.metafields.custom.product_specialization %}
+  <div class="product_img">
+
+    <img src="{{ product.metafields.custom.product_specialization | img_url:'master'}}">
+  </div>
+  {% endif %}
+<div id="tab_section">
+{% if product.metafields.custom.tab_1_title %}
+  <div class="collapsibles-wrapper collapsibles-wrapper--border-bottom">
+  
+  <button type="button" class="label collapsible-trigger collapsible-trigger-btn collapsible-trigger-btn--borders collapsible--auto-height" 
+      aria-controls="shipping_desc" aria-expanded="false">
+   {{ product.metafields.custom.tab_1_title}}
+<span class="collapsible-trigger__icon collapsible-trigger__icon--open" role="presentation">
+  <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon--wide icon-chevron-down" viewBox="0 0 28 16"><path d="m1.57 1.59 12.76 12.77L27.1 1.59" stroke-width="2" stroke="#000" fill="none"></path></svg>
+</span>
+</button>
+    <div id="shipping_desc" class="collapsible-content collapsible-content--all" style="height: 0px;">
+      <div class="collapsible-content__inner rte">
+         {{ product.metafields.custom.tab_1_description}}
+      </div>
+    </div>
+  {% endif %}
+  </div>
+
+{% if product.metafields.custom.tab2_title %}
+  <div class="collapsibles-wrapper collapsibles-wrapper--border-bottom">
+    <button type="button" class="label collapsible-trigger collapsible-trigger-btn collapsible-trigger-btn--borders collapsible--auto-height" 
+      aria-controls="handling" aria-expanded="false">
+   {{ product.metafields.custom.tab2_title}}
+<span class="collapsible-trigger__icon collapsible-trigger__icon--open" role="presentation">
+  <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon--wide icon-chevron-down" viewBox="0 0 28 16"><path d="m1.57 1.59 12.76 12.77L27.1 1.59" stroke-width="2" stroke="#000" fill="none"></path></svg>
+</span>
+</button>
+    <div id="handling" class="collapsible-content collapsible-content--all" style="height: 0px;">
+      <div class="collapsible-content__inner rte">
+         {{ product.metafields.custom.tab2_description}}
+      </div>
+    </div>
+  </div>
+  {% endif %}
